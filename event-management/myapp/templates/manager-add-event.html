@@ -1,0 +1,113 @@
+{% extends 'manager-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    </head>
+    
+    <body>
+
+    <!-- ***** About Us Page ***** -->
+    <div class="page-heading-rent-venue">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Add Event</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rent-venue-application">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="heading-text">
+                        <h4>Add Event</h4>
+                    </div>
+                    {% if msg %}
+                        <b style="color: blue;">{{msg}}</b>
+                    {% endif %}    
+                    <div class="contact-form">
+                        <form id="contact" action="{% url 'manager-add-event' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <input name="event_name" type="text" id="name" placeholder="Your Event Name*" required="">
+                              </fieldset>
+                            </div>
+                             <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="event_date" type="date" id="name" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="event_time" type="time" id="email" required="">
+                              </fieldset>
+                            </div>
+                              
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="event_venue" rows="6" id="about-event-hosting" placeholder="Event Venue" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="event_picture" type="file" id="phone-number">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="event_price" type="text" id="email" placeholder="Event Price" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-dark-button">Add Event</button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *** Subscribe *** -->
+    <div class="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Subscribe Our Newsletter:</h4>
+                </div>
+                <div class="col-lg-8">
+                    <form id="subscribe" action="" method="get">
+                        <div class="row">
+                          <div class="col-lg-9">
+                            <fieldset>
+                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-3">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button">Submit</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </body>
+</html>
+{% endblock %}

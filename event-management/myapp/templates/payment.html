@@ -1,0 +1,138 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+
+    <!-- ***** About Us Page ***** -->
+    <div class="page-heading-shows-events">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Shows & Events</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shows-events-tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="tabs">
+                        
+                      <div class="col-lg-12">
+                        <section class='tabs-content'>
+                            <article id='tabs-1'>
+                                <div class="row">
+                                   
+                                    
+                                    <div class="col-lg-9">
+                                        <div class="row">
+                                           
+                                            <div class="col-lg-12">
+                                                <div class="event-item">
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="left-content">
+                                                                <h4>{{bookevent.event.event_name}}</h4>
+                                                                
+                                                                <div class="main-dark-button">
+                                                                    {% if bookevent.payment_status == False %}
+            <form method="post">
+              <input type="hidden" id="net_price" name="amount" value="{{total_price}}">
+              <button type="button" class="btn btn-lg btn-primary" id="checkout-button">Checkout</button>
+            </form>
+                                                                {% else %}
+                                                                    <a href="" disabled>Already Booked</a>
+                                                                {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="thumb">
+                                                                <img src="{{bookevent.event.event_picture.url}}" alt="" style="height: 250px;width: 300px;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="right-content">
+                                                                <ul>
+                                                                    <li>
+                                                                        <i class="fa fa-clock-o"></i>
+                                                                        <h6>{{bookevent.event.event_date}}<br>{{bookevent.event.event_time}}</h6>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="fa fa-map-marker"></i>
+                                                                        <span>{{bookevent.event.event_venue}}</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <i class="fa fa-users"></i>
+                                                                        <span>540 Total Guests Attending</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>                                
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var stripe = Stripe('pk_test_51PtowJP2tqGZYPcUaRKJA0mP32Qelu5cRXBCAptEdeqRnsTKszPKObz5AvYua0tdAwL6rLnSWfxmlTmfv6iuT5IG00iYvO1pap');
+var checkoutButton = document.getElementById('checkout-button');
+data={
+    post_data:'{{total_price}}',
+    post_data1:'{{be}}'
+}
+checkoutButton.addEventListener('click', function() { 
+ fetch('/create-checkout-session/', {
+ method: 'POST',
+    headers:{
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+
+    },
+    body: JSON.stringify(data)
+
+ })
+ .then(function(response) {
+ return response.json();
+ })
+ .then(function(session) {
+ return stripe.redirectToCheckout({ sessionId: session.id });
+ })
+ .then(function(result) {
+ // If `redirectToCheckout` fails due to a browser or network
+ // error, you should display the localized error message to your
+ // customer using `error.message`.
+ if (result.error) {
+ alert(result.error.message);
+ }
+ })
+ .catch(function(error) {
+ console.error('Error:', error);
+ });
+ });
+ </script>
+</body>
+</html>
+{% endblock %}

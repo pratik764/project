@@ -1,0 +1,387 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    </head>
+    
+    <body>
+
+
+    <!-- ***** About Us Page ***** -->
+    <div class="page-heading-shows-events">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>My Shows & Events</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shows-events-tabs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row" id="tabs">
+                        <div class="col-lg-12">
+                            <div class="heading-tabs">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <ul>
+                                          <li><a href='#tabs-1'>Upcoming</a></li>
+                                          <li><a href='#tabs-2'>Past</a></a></li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <section class='tabs-content'>
+                                <article id='tabs-1'>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="heading"><h2>Upcoming</h2></div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="sidebar">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="heading-sidebar">
+                                                            <h4>Sort The Upcoming Shows & Events By:</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="month">
+                                                            <h6>Month</h6>
+                                                            <ul>
+                                                                <li><a href="#">July</a></li>
+                                                                <li><a href="#">August</a></li>
+                                                                <li><a href="#">September</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="category">
+                                                            <h6>Category</h6>
+                                                            <ul>
+                                                                <li><a href="#">Pop Music</a></li>
+                                                                <li><a href="#">Rock Music</a></li>
+                                                                <li><a href="#">Hip Hop Music</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="venues">
+                                                            <h6>Venues</h6>
+                                                            <ul>
+                                                                <li><a href="#">Radio City Musical Hall</a></li>
+                                                                <li><a href="#">Madison Square Garden</a></li>
+                                                                <li><a href="#">Royce Hall</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                {% for i in events %}
+                                                <div class="col-lg-12">
+                                                    <div class="event-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="left-content">
+                                                                    <h4>{{i.event_name}}</h4>
+                                                                    
+                                                                    <div class="main-dark-button">
+                                                                        {% if request.session.email %}
+                                                                        <a href="{% url 'event-details' pk=i.pk %}">Details</a>
+                                                                        {% else %}
+                                                                          <a href="{% url 'login' %}">Login</a> 
+                                                                        {% endif %}                                                                       
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="thumb">
+                                                                    <img src="{{i.event_picture.url}}" alt="" style="height:250px;width: 300px;" >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="right-content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <i class="fa fa-clock-o"></i>
+                                                                            <h6>{{i.event_date}}<br>{{i.event_time}}</h6>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            <span>{{i.event_venue}}</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-users"></i>
+                                                                            <span>540 Total Guests Attending</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                               {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>                            
+                                <article id='tabs-2'>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="heading"><h2>Upcoming</h2></div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="sidebar">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="heading-sidebar">
+                                                            <h4>Sort The Upcoming Shows & Events By:</h4>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="month">
+                                                            <h6>Month</h6>
+                                                            <ul>
+                                                                <li><a href="#">July</a></li>
+                                                                <li><a href="#">August</a></li>
+                                                                <li><a href="#">September</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="category">
+                                                            <h6>Category</h6>
+                                                            <ul>
+                                                                <li><a href="#">Pop Music</a></li>
+                                                                <li><a href="#">Rock Music</a></li>
+                                                                <li><a href="#">Hip Hop Music</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="venues">
+                                                            <h6>Venues</h6>
+                                                            <ul>
+                                                                <li><a href="#">Radio City Musical Hall</a></li>
+                                                                <li><a href="#">Madison Square Garden</a></li>
+                                                                <li><a href="#">Royce Hall</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="event-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="left-content">
+                                                                    <h4>Water Splash Festival</h4>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
+                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="thumb">
+                                                                    <img src="{% static 'assets/images/event-page-04.jpg' %}" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="right-content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <i class="fa fa-clock-o"></i>
+                                                                            <h6>April 24 Friday<br>12:00 AM - 12:00 PM</h6>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            <span>Copacabana Beach, Rio de Janeiro</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-users"></i>
+                                                                            <span>528 Total Guests Attending</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="event-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="left-content">
+                                                                    <h4>Sunny Hill Festival</h4>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
+                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="thumb">
+                                                                    <img src="{% static 'assets/images/event-page-03.jpg' %}" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="right-content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <i class="fa fa-clock-o"></i>
+                                                                            <h6>May 31 Friday<br>10:00 AM - 11:00 PM</h6>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            <span>Copacabana Beach, Rio de Janeiro</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-users"></i>
+                                                                            <span>240 Total Guests Attending</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="event-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="left-content">
+                                                                    <h4>New Rock Festival</h4>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
+                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="thumb">
+                                                                    <img src="{% static 'assets/images/event-page-02.jpg' %}" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="right-content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <i class="fa fa-clock-o"></i>
+                                                                            <h6>June 12 Friday<br>09:00 AM - 09:00 PM</h6>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            <span>Copacabana Beach, Rio de Janeiro</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-users"></i>
+                                                                            <span>360 Total Guests Attending</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="event-item">
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                                <div class="left-content">
+                                                                    <h4>Monkey Dance Festival</h4>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur do adipiscing eliterirt sed eiusmod alori...</p>
+                                                                    <div class="main-dark-button"><a href="event-details.html">Discover More</a></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="thumb">
+                                                                    <img src="{% static 'assets/images/event-page-01.jpg' %}" alt="">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <div class="right-content">
+                                                                    <ul>
+                                                                        <li>
+                                                                            <i class="fa fa-clock-o"></i>
+                                                                            <h6>July 14 Friday<br>08:30 AM - 09:30 PM</h6>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-map-marker"></i>
+                                                                            <span>Copacabana Beach, Rio de Janeiro</span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fa fa-users"></i>
+                                                                            <span>450 Total Guests Attending</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="pagination">
+                                                        <ul>
+                                                            <li><a href="#">Prev</a></li>
+                                                            <li><a href="#">1</a></li>
+                                                            <li class="active"><a href="#">2</a></li>
+                                                            <li><a href="#">3</a></li>
+                                                            <li><a href="#">Next</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>    
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- *** Subscribe *** -->
+    <div class="subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4>Subscribe Our Newsletter:</h4>
+                </div>
+                <div class="col-lg-8">
+                    <form id="subscribe" action="" method="get">
+                        <div class="row">
+                          <div class="col-lg-9">
+                            <fieldset>
+                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-lg-3">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-dark-button">Submit</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+
+</html>
+{% endblock %}
